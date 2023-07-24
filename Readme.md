@@ -1,10 +1,4 @@
 # DOCKER(Kafka-Pyspark)
-This is an integration of Kafka with Pyspark using Docker containers.
-
-Streaming is simulated by sending data every 5 seconds in the producer.py which sends samples from a local csv. The samples or events are sent to a Kafka topic called 'test_topic'. 
-
-On the other hand, a transformer service reads the events from the above topic, performs a very basic transformation on it, and then sends it to another topic called 'output_topic_sink' for further use.
-
 Start the process with:
 ```
 docker compose up -d
