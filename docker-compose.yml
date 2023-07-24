@@ -26,7 +26,7 @@ services:
 
   producer:
     build:
-      context: ./producer
+      context: ./src/producer
       dockerfile: Dockerfile
     container_name: producer
     depends_on:
@@ -37,7 +37,7 @@ services:
 
   pyspark_consumer:
     build:
-      context: ./pyspark_consumer
+      context: ./src/pyspark_consumer
       dockerfile: Dockerfile
     container_name: pyspark_consumer
     depends_on:
