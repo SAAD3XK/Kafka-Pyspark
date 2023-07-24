@@ -2,16 +2,13 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
 from pyspark.sql.types import StringType, DoubleType, StructType
 import os
+import logging
 
 KAFKA_TOPIC_NAME_CONS = os.environ.get('INPUT_TOPIC')
 KAFKA_OUTPUT_TOPIC_NAME_CONS = os.environ.get('OUTPUT_TOPIC')
 KAFKA_BOOTSTRAP_SERVERS_CONS = os.environ.get('KAFKA_BOOTSTRAP_SERVERS')
-# KAFKA_TOPIC_NAME_CONS = 'test_topic'
-# KAFKA_OUTPUT_TOPIC_NAME_CONS = 'output_topic_sink'
-# KAFKA_BOOTSTRAP_SERVERS_CONS='broker:29092'
 
-print(type(KAFKA_OUTPUT_TOPIC_NAME_CONS))
-print(KAFKA_OUTPUT_TOPIC_NAME_CONS)
+logging.basicConfig(level=logging.INFO)
 
 spark = SparkSession \
         .builder \
@@ -40,7 +37,7 @@ stock_df = spark \
         .option("startingOffsets", "latest") \
         .load()
 
-print("Reading incoming data...")
+logging.info("Reading incoming data...")
 
 # simply converting the 'value' column from json to a string and keeping the 'timestamp' column as is
 stock_df1 = stock_df.selectExpr("CAST(value AS STRING)", "timestamp")
