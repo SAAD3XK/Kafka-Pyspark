@@ -10,7 +10,4 @@ COPY producer.py .
 
 COPY indexProcessed.csv .
 
-ENV KAFKA_BOOTSTRAP_SERVERS='broker:29092'
-ENV INPUT_TOPIC='test_topic'
-
 CMD ["python", "producer.py"]
